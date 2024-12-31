@@ -236,7 +236,7 @@ def contact_view(request):
                 ['zinkolaymgy@gmail.com'],  # To email(s)
             )
             
-            messages.success(request, f'Hi {name}Your message has been sent successfully!')
+            messages.success(request, f'Hi {name} Your message has been sent successfully!')
             form = ContactForm()  # Reset the form
     else:
         form = ContactForm()
