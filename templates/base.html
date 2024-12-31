@@ -1,9 +1,7 @@
 {% load static %}
 <html lang="en"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}">
@@ -14,7 +12,33 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        /* Ensure the HTML and body take full height */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
 
+        /* Main content area */
+        .content {
+            flex: 1; /* Fills the remaining space */
+        }
+
+        /* Footer styling */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.97);
+            color: white;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .footer .container {
+            padding: 1rem;
+        }
+    </style>
 
 {% include "nava.html" %}
 <div class="message" style="padding-top: 75px;" > 
@@ -26,44 +50,37 @@
         </div>
         {% endfor %}
     {% endif %}
- 
-    {% block content %}
 </div>
-    {% endblock %}
- <!-- Footer -->
+<div class="content">
+    {% block content %}
 
- {% comment %} <footer class="mt-auto py-4" style="background-color:rgba(0, 0, 0, 0.97); color: white; bottom: 0; left: 0; width: 100%;">
-    
-    <div class="container">
-        <p class="mb-0  text-white">Copyright©bookworms.com 2024</p>
-        <form action="{% url 'contact' %}" method="post" class="contact-form text-end" style="margin-top: -30px;">  
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">CONTACT US</button>
-            <a href="https://www.facebook.com/profile.php?id=61571465004458"><i class="bi bi-facebook" style="font-size: 1.8rem; text-decoration: none; bm:30px;"></i></a>
-        </form>
-    </div>
-</footer> {% endcomment %}
+    {% endblock %}
+</div>
+   
+ <!-- Footer -->
 
 <div style="background-color:rgba(0, 0, 0, 0.97); color: white; bottom: 0; left: 0; width: 100%;">
     <div class="container">
-        <footer class="py-2">
-            <div class="d-flex justify-content-between align-items-left border-top py-3 ">
-                <!-- Left Section: Copyright -->
-                <p class="mb-0 text-white">Copyright©bookworms.com 2024. All rights reserved.</p>
-
-                <!-- Right Section: Contact Button and Facebook Icon -->
-                <div class="d-flex align-items-center"> 
-                    <form action="{% url 'contact' %}" method="post" class="d-inline-block mb-0 me-2">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">CONTACT</button>
-                    </form> 
-                    <a href="https://www.facebook.com/profile.php?id=61571465004458" class="text-decoration-none" 
-                       style="font-size: 1.8rem;">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                </div>
-            </div>
-        </footer>
+        <div class="footer">
+            <div class="container">
+                <footer class="py-2">
+                    <div class="d-flex justify-content-between align-items-left border-top py-3">
+                        <!-- Left Section: Copyright -->
+                        <p class="mb-0 text-white">Copyright©bookworms.com 2024. All rights reserved.</p>
+    
+                        <!-- Right Section: Contact Button and Facebook Icon -->
+                        <div class="d-flex align-items-center">
+                            <form action="{% url 'contact' %}" method="post" class="d-inline-block mb-0 me-2">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">CONTACT</button>
+                            </form>
+                            <a href="https://www.facebook.com/profile.php?id=61571465004458" class="text-decoration-none" 
+                               style="font-size: 1.8rem;">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </footer>
     </div>
 </div>
 
