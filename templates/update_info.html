@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<header class="py-1">
+    <div class="container px-4 px-lg-5">
+        <div class="text-center display-4 fw-bolder gradient-text">
+            <h1 class="display-4 fw-bolder">Update user info.....</h1>
+        </div>
+    </div>
+</header>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST" action="{% url 'update_info' %}" class="d-inline-block">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-outline-primary ms-2">Update User Info</button>
+            </form>
+            <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">
+                BACK TO HOME
+            </a>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

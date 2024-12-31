@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<header class="py-1">
+    <div class="container px-4 px-lg-5">
+        <div class="text-center display-4 fw-bolder gradient-text">
+            <h1 class="display-4 fw-bolder">Contact us to get your desired books.....</h1>
+        </div>
+    </div>
+</header>
+
+<div class='container'>
+    <div class='row justify-content-center'>  <!-- Center the column within the row -->
+        <div class='col-md-6 text-left'>
+            <form method="POST" action="{% url 'contact' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <div class="text-center">  <!-- Align button to the right -->
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                    <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">
+                        Back to Home
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

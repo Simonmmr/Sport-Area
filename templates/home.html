@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Header -->
+<header class="py-1">
+    <div class="container px-4 px-lg-5">
+        <div class="text-center display-4 fw-bolder gradient-text">
+            <h1 class="display-4 fw-bolder">Pick up your favorite books here.</h1>
+            <p class="lead fw-normal text-dark-50 mb-0">Reading books will make you a knowledgeable person.</p>
+        </div>
+    </div>
+</header>
+<br>
+<!-- Products Section -->
+<section class="py-1">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for product in products %}
+            <div class="col mb-3">
+                <div class="card h-100 shadow-sm ">
+                    <!-- Product Image -->
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <!-- Product Details -->
+                    <div class="card-body py-1">
+                        <div class="text-center" >
+                            <!-- Product Name -->
+                            <h class="fw-bolder gradient-text" style="color:rgb(72, 143, 248);">{{ product.name }}</h>
+                            {% if product.author %}
+                                <p class="text-muted" style="color:rgb(72, 138, 236);"> 
+                                    by 
+                                <br>{{ product.author }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- Product Actions -->
+                    <div class="card-footer py-2 border-top-1 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-primary" href="{% url 'product' product.id %}">View Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endfor %}
+    </div>
+{% include "pagination.html" %}
+</section>
+{% endblock %}
+
