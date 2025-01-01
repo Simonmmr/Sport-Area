@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qtd1d_4@ei%=^wo&cym&&pt75^a^dn3r=a7fikauz6b+4f(*u3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
+    'sslserver',
 
 ]
 
@@ -147,6 +148,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # Replace with your email address
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")      # Replace with your email password
-
 
 django_heroku.settings(locals())
