@@ -118,7 +118,7 @@ def download_pdf(request, pdf_id):
 
 def home(request):
     products = Product.objects.all().order_by('-created_at')
-    paginator = Paginator(products, 8)  # Show 8 products per page
+    paginator = Paginator(products, 6)  # Show 6 products per page
 
     page_number = request.GET.get('page')  # Get current page number from the URL
     page_obj = paginator.get_page(page_number)  # Get the corresponding page
