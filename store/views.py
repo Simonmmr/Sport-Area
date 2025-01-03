@@ -97,24 +97,18 @@ def product(request,pk):
 
 
 def download_pdf(request, pdf_id):
-    if request.user.is_authenticated:
-        try:
-            pdf = Product.objects.get(id=pdf_id)
-        except Product.DoesNotExist:
-            messages.error(request, "The requested file does not exist.")
-            return redirect('home')
-        if not pdf.file or not pdf.file.name:
-            messages.error(request, "The requested file is not available.")
-            return redirect('home')
-        response = HttpResponse(pdf.file, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="{pdf.file.name}"'
-        messages.success(request,"Good!!!your book has already downloaded.Check in your download folder")   
-        return response
-    else:
-        messages.error(request, "Please register first🥰, if you did already, please log in to download the file...😉")
-        form = SignUpForm()
-        return render(request, "register.html", {'form': form})
-
+    try:
+        pdf = Product.objects.get(id=pdf_id)
+    except Product.DoesNotExist:
+        messages.error(request, "The requested file does not exist.")
+        return redirect('home')
+    if not pdf.file or not pdf.file.name:
+        messages.error(request, "The requested file is not available.")
+        return redirect('home')
+    response = HttpResponse(pdf.file, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="{pdf.file.name}"'
+    messages.success(request,"Good!!!your book has already downloaded.Check in your download folder")   
+    return response
 
 def home(request):
     products = Product.objects.all().order_by('-created_at')
@@ -211,9 +205,6 @@ def unsubscribe(request):
         messages.success(request, f"Hi!!{profile}.You have unsubscribed the channel, to get more information about any update on our channel, we suggest to subscribe..")
         return redirect('home')  # Redirect to the desired page
     return redirect('home')
-
-# views.py
-
 
 
 def contact_view(request):
