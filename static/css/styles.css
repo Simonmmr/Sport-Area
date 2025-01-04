@@ -10901,7 +10901,7 @@ button {
   right: 0px;
 }
 #theme-switch svg{
-  fill: var(--base-color);
+  fill: var(--base-color); 
 }
 #theme-switch svg:last-child{
   display: none;

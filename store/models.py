@@ -56,6 +56,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='uploads/products/')
     file = models.FileField(upload_to='uploads/pdfs',null=True, blank=True)
     created_at = models.DateTimeField(default=now, editable=False)
+    burmese_version = models.CharField(max_length=4000, default='', blank=True)
     
  
     def __str__(self):

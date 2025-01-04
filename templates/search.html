@@ -16,8 +16,6 @@
     </div>
 </div>
 
-
-
 {% else %}
 <header class="py-1">
     <div class="container px-4 px-lg-5">
@@ -27,13 +25,12 @@
         </div>
     </div>
 </header>
-<br>
 {% endif %}
 {% for product in searched %}
 <center>
     <div class="container mt-5">
       <div class="row justify-content-center">
-          <div class="col-lg-8">
+          <div class="col-lg-6">
               <div class="card mb-3 shadow-lg">
                   <div class="row g-0">
                       <!-- Product Image -->
@@ -42,30 +39,79 @@
                       </div>
                       <!-- Product Details -->
                       <div class="col-md-8">
-                          <div class="card-body">
-                            <h3 class="fw-bolder" style="color:rgb(72, 143, 248);">{{ product.name }}</h3>
-                            <p class="text-muted" style="color:rgb(72, 138, 236);"> 
-                                by 
-                            <br>{{ product.author }}</p>
-                              <p class="card-text mt-3" style="text-align: justify;">{{ product.description }}</p>
-                              <div class="mt-4">
-                                  <!-- Download Button -->
-                                  <a href="{% url 'download_pdf' product.id %}" class="btn btn-outline-success">
-                                      Download PDF
-                                  </a>
-                                  <!-- Back to Home Button -->
-                                  <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">
-                                      Back to Home
-                                  </a>
-                              </div>
-                          </div>
-                      </div>
+                        <div class="card-body">
+                            <br>
+                            <h3 class="fw-bolder" style="color:rgb(72, 143, 248);"><u>{{ product.name }}</u></h3>
+                                <p>Written by </p>
+                            <h4  class="fw-bolder" style="color:rgb(72, 143, 248);" style="color:rgb(72, 138, 236);"> 
+                            {{ product.author }}</h4>
+                        <br>
+                            <div class="mt-4">
+                                <!-- Download Button -->
+                                <a href="{% url 'download_pdf' product.id %}" class="btn btn-outline-success">
+                                    Download PDF
+                                </a>
+                                <!-- Back to Home Button -->
+                                <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">
+                                    Back to Home
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                   </div>
               </div>
           </div>
       </div>
   </div>
+<div class="mt-4">
+    <!-- Button for English -->
+<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#englishModal">
+    Read Detail in English
+</button>
+<!-- Modal for English -->
+<div class="modal fade" id="englishModal" tabindex="-1" aria-labelledby="englishModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-body" id="englishModalLabel">{{ product.name }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% if product.description %}
+                <p style="text-align: justify;" class="text-body">{{ product.description }}</p>
+                {% else %}
+                <p style="text-align: justify;" class="text-body">Sorry This Service is Not Available for this content!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>  
+<!-- Button for Burmese -->
+<button type="button" class="btn btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#burmeseModal">
+    မြန်မာဘာသာဖြင့် အညွှန်းအသေးစိတ် ဖတ်ရန်
+</button>
+
+<!-- Modal for Burmese -->
+<div class="modal fade" id="burmeseModal" tabindex="-1" aria-labelledby="burmeseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-body" id="burmeseModalLabel">{{ product.name }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                {% if product.burmese_version %}
+                <p style="text-align: justify;" class="text-body">{{ product.burmese_version }}</p>
+                {% else %}
+                <p style="text-align: justify;" class="text-body">Sorry This Service is Not Available For This Content!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 </center>
+<br>
 {% endfor %}
 
 {% endblock %}
