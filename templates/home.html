@@ -1,21 +1,25 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
-<head class="py-1">
-    <div class="col-12">
-        <div class="text-center display-4 fw-bolder gradient-text">
-            <h1 class="display-4 fw-bolder">Pick Up Your Favorite Books Here.</h1>
-            <p class="lead fw-normal text-dark-50 mb-0">Reading books will make you a knowledgeable person.</p>
-        </div>
-    </div>
-    <meta name="monetag" content="b622e65a35782fa2f4863ccd2e431800">
-    <script src="https://alwingulla.com/88/tag.min.js" data-zone="123843" async data-cfasync="false"></script>
-</head>
-<br>
+{% include "carousel.html" %}
+
 <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
     .card-img-top {
-        height: 550px; /* Set a fixed height */
+        height: 350px; /* Set a fixed height */
         object-fit: cover; /* Ensures the image fits the area while maintaining proportions */
         width: 100%; /* Ensure the image spans the full width of the card */
         border-radius: 0.5rem; /* Optional: Add some rounding for aesthetics */
@@ -23,32 +27,21 @@
 </style>
 <!-- Products Section -->
 <section class="py-1">
-    <div class="container px-4 px-lg-5 mt-5">
+    <div class="container px-4 px-lg-5 mt-1">
         <div class="row gx-3 row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 justify-content-center">
             {% for product in products %}
-            <div class="col mb-3">
+            <div class="col mb-2">
                 <div class="card h-100 shadow-lg">
                     <!-- Product Image -->
-                    <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <a href="{% url 'view_detail' product.id %}"><img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}"></a>
                     <!-- Product Details -->
                     <div class="card-body py-2">
                         <div class="text-center">
                             <!-- Product Name -->
-                            <h class="fw-bolder gradient-text" style="color:rgb(72, 143, 248); font-size: 1.25rem;">
-                                {{ product.name }}
+                            <h class="fw-bolder gradient-text" style="color:rgb(72, 143, 248); font-size: 0.9rem;">
+                                {{ product.title }} {{ product.created_at }} <br>
+                                {{ product.subtitle }}
                             </h>
-                            {% if product.author %}
-                                <p class="text-muted" style="color:rgb(72, 138, 236);">
-                                    by 
-                                    <br>{{ product.author }}
-                                </p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <!-- Product Actions -->
-                    <div class="card-footer py-3 border-top-1 bg-transparent">
-                        <div class="text-center">
-                            <a class="btn btn-outline-primary" href="{% url 'product' product.id %}">View Detail</a>
                         </div>
                     </div>
                 </div>
@@ -56,10 +49,6 @@
             {% endfor %}
         </div>
     </div>
-
-    {% include "pagination.html" %}
-</section>
-</body>
-</html>
+{% include "pagination.html" %}
 {% endblock %}
 

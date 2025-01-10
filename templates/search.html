@@ -1,4 +1,5 @@
 {% extends "base.html" %} 
+{% load static %}
 {% block content %}
 
 <br>
@@ -7,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8">
             <h2 class="lead fw-bolder text-dark-50 mb-3" style="color: red;">
-                Sorry, there is no such a book you are looking for😔😔.
+                Sorry, there is no such a thing you are looking for😔😔.
             </h2>
             <img class="img-fluid" 
                  src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTN5Zm1xang1NWp4aXo4MjdkemF3M2FkZ2EzNmx4d2V5ZzJqM3ZreCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SSLRLbb54JHTvYY9BD/giphy.gif" 
@@ -20,98 +21,65 @@
 <header class="py-1">
     <div class="container px-4 px-lg-5">
         <div class="text-center display-4 fw-bolder gradient-text">
-            <h1 class="display-4 fw-bolder">Searching Your Desired Products...</h1>
+            <h1 class="display-4 fw-bolder">Searching ..........</h1>
             <p class="lead fw-normal text-dark-50 mb-0">Check below what we have found for you..</p>
         </div>
     </div>
 </header>
 {% endif %}
 {% for product in searched %}
-<center>
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-          <div class="col-lg-6">
-              <div class="card mb-3 shadow-lg">
-                  <div class="row g-0">
-                      <!-- Product Image -->
-                      <div class="col-md-4">
-                          <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
-                      </div>
-                      <!-- Product Details -->
-                      <div class="col-md-8">
-                        <div class="card-body">
-                            <br>
-                            <h3 class="fw-bolder" style="color:rgb(72, 143, 248);"><u>{{ product.name }}</u></h3>
-                                <p>Written by </p>
-                            <h4  class="fw-bolder" style="color:rgb(72, 143, 248);" style="color:rgb(72, 138, 236);"> 
-                            {{ product.author }}</h4>
-                        <br>
-                            <div class="mt-4">
-                                <!-- Download Button -->
-                                <a href="{% url 'download_pdf' product.id %}" class="btn btn-outline-success">
-                                    Download PDF
-                                </a>
-                                <!-- Back to Home Button -->
-                                <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">
-                                    Back to Home
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-<div class="mt-4">
-    <!-- Button for English -->
-<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#englishModal">
-    Read Detail in English
-</button>
-<!-- Modal for English -->
-<div class="modal fade" id="englishModal" tabindex="-1" aria-labelledby="englishModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 text-body" id="englishModalLabel">{{ product.name }}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {% if product.description %}
-                <p style="text-align: justify;" class="text-body">{{ product.description }}</p>
-                {% else %}
-                <p style="text-align: justify;" class="text-body">Sorry This Service is Not Available for this content!</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>  
-<!-- Button for Burmese -->
-<button type="button" class="btn btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#burmeseModal">
-    မြန်မာဘာသာဖြင့် အညွှန်းအသေးစိတ် ဖတ်ရန်
-</button>
 
-<!-- Modal for Burmese -->
-<div class="modal fade" id="burmeseModal" tabindex="-1" aria-labelledby="burmeseModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 text-body" id="burmeseModalLabel">{{ product.name }}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            
-            <div class="modal-body">
-                {% if product.burmese_version %}
-                <p style="text-align: justify;" class="text-body">{{ product.burmese_version }}</p>
-                {% else %}
-                <p style="text-align: justify;" class="text-body">Sorry This Service is Not Available For This Content!</p>
-                {% endif %}
-            </div>
+
+<div class="container mt-5">
+    <!-- First Item -->
+    <div class="row align-items-center mb-4">
+
+        <div class="col-md-3 text-center">
+            <img src="{{ product.image.url }}" class="img-fluid rounded" alt="Image 1" style="max-width: 100%;">
         </div>
+        <div class="col-md-9">
+            <p class="text-primary fw-bold" style="font-family: 'Arial', sans-serif;">{{ product.subtitle }}</p>
+            <br>
+            <p>{{ product.description }}</p>
+        </div>
+        <a href="{% url 'home' %}"> <img src="{% static 'img/logo.png' %}" alt="logo" class="rounded mx-auto d-block" style="width: 200px; height: auto;"></a>
+
     </div>
+    
+    <!-- Second Item -->
+    {% if product.image_one %}
+    <div class="row align-items-center mb-4">
+        <div class="col-md-9">
+           
+            <p class="text-primary fw-bold" style="font-family: 'Arial', sans-serif;">{{ product.subtitle }}</p>
+            <br>
+            <p>{{ product.description_one }}</p>
+        </div>
+        <div class="col-md-3 text-center">
+            <img src="{{ product.image_one.url }}" class="img-fluid rounded" alt="Image 2" style="max-width: 100%;">
+        </div>
+        <a href="{% url 'home' %}"> <img src="{% static 'img/logo.png' %}" alt="logo" class="rounded mx-auto d-block" style="width: 200px; height: auto;"></a>
+    </div>
+    {% endif %}
+
+    <!-- Third Item -->
+    {% if product.image_two %}
+    <div class="row align-items-center mb-4">
+        <div class="col-md-3 text-center">
+            <img src="{{ product.image_two.url }}" class="img-fluid rounded" alt="Image 3" style="max-width: 100%;">
+        </div>
+
+        <div class="col-md-9">
+            <p class="text-primary fw-bold" style="font-family: 'Arial', sans-serif;">{{ product.subtitle }}</p>
+            <br>
+            <p>{{ product.description_two }}</p>
+        </div>
+
+    </div>
+    {% endif %}
 </div>
-</center>
-<br>
+
+ 
 {% endfor %}
 
 {% endblock %}

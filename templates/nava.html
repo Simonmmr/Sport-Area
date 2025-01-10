@@ -1,84 +1,49 @@
 {% load static %}
-
 <style>
     /* General hover effect for nav links */
-    .navbar-nav .nav-link:hover {
-        color: rgb(224, 226, 245); /* Change text color to a yellowish hue */
-        background-color: rgb(13, 110, 253); /* Slight background highlight */
-        border-radius: 5px; /* Add rounded corners */
-        transition: all 0.3s ease; /* Smooth transition */
+    .navbar-nav .nav-link {
+        color: rgb(224, 226, 245); /* Default text color */
+        transition: color 0.3s ease; /* Smooth transition for text color */
+        font-size: 18px; /* Set font size with a unit */
+        font-family: 'Arial', sans-serif; /* Set font family */
     }
     
-    /* Hover effect for dropdown items */
-    .dropdown-menu .dropdown-item:hover {
-        background-color: rgb(13, 110, 253); /* Light blue highlight */
-        color: rgb(224, 226, 245); /* Blue text */
-        transition: all 0.3s ease;
+    .navbar-nav .nav-link:hover {
+        color: rgb(71, 183, 151) !important; /* Use !important as a last resort */
+        background-color: transparent; /* Ensure background remains transparent */
+        border-radius: 5px; /* Optional: Add rounded corners */
     }
 </style>
+
+
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgba(54, 31, 97, 0.97); color: white;">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgba(26, 52, 120, 225); color: white;">
     <div class="container py-1 px-4 px-lg-5" >
-        <a class="navbar-brand text-light" href="{% url 'home' %}"><h3>I LOVE READING</h3></a>
+        <img src="{% static 'img/logo.png' %}" alt="logo" style="width: 80px; height: auto; margin-bottom: 38px;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 fw-bolder gradient-text">
-                <li class="nav-item"><a class="nav-link active text-light" aria-current="page" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'about' %}">About</a></li>
-                {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'logout' %}">Logout</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-light" id="navbarDropdownProfile" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                        <li><a class="dropdown-item" href="{% url 'update_user' %}">User Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'update_info' %}">Update Detail Info</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-light" id="navbarDropdownCategories" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
-                        <li><a class="dropdown-item" href="{% url 'home' %}">All Products</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Burmese-Books' %}">Burmese Books</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'English-Books' %}">English Books</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'English-Language' %}">English Language </a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Korean-Language' %}">Korean Language</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Japanese Language' %}">Japanese Language</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Others' %}">Others</a></li>
-                    </ul>
-                </li>
-                {% else %}
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'login' %}">Login</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 fw-bolder gradient-text" style="font-size: 18px; font-family: 'Arial', sans-serif;">
+                <li class="nav-item"><a class="nav-link active text-light" aria-current="page" href="{% url 'home' %}">HOME</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="{% url 'category' 'Tips' %}">TIPS</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="{% url 'category' 'News' %}">NEWS</a></li>
+            </ul>            
             <div class="d-flex align-items-center"> <!-- Added margin-left -->
             <!-- Search Form -->
                 <form method="POST" action="{% url 'search' %}" class="d-flex me-3">
                     {% csrf_token %}
                     <div class="input-group custom-search-bar" style="max-width: 300px;">
-                        <input type="text" class="form-control" placeholder="Search products" name="searched">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <input type="text" class="form-control" placeholder="Search any" name="searched">
+                        <button type="submit" class="btn btn-primary">SEARCH</button>
                     </div>
                 </form>
-                <div class="subscription-container">
-                    {% if user.is_authenticated and user.profile.is_subscriber %}
-                        <form action="{% url 'unsubscribe' %}" method="post" class="unsubscribe-form">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Unsubscribe</button>
-                        </form>
-                    {% endif %}
-                    {% if user.is_authenticated and not user.profile.is_subscriber %}
-                        <form action="{% url 'subscribe' %}" method="post" class="subscribe-form">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Subscribe</button>
-                        </form>
-                    {% endif %}
-                </div>
+                
+                <form action="{% url 'contact' %}" method="post" class="d-inline-block mb-0 me-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">CONTACT</button>
+                </form>
             </div>
         </div>
     </div>
