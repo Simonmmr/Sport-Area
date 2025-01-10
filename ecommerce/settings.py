@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
+from decouple import config
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -30,7 +33,7 @@ SECRET_KEY = 'django-insecure-qtd1d_4@ei%=^wo&cym&&pt75^a^dn3r=a7fikauz6b+4f(*u3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','sportareamm.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -145,3 +148,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # Replace with your email address
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")      # Replace with your email password
+
+django_heroku.settings(locals())
