@@ -29,13 +29,16 @@
                 <li class="nav-item"><a class="nav-link active text-light" aria-current="page" href="{% url 'home' %}">HOME</a></li>
                 <li class="nav-item"><a class="nav-link text-light" href="{% url 'category' 'Tips' %}">TIPS</a></li>
                 <li class="nav-item"><a class="nav-link text-light" href="{% url 'category' 'News' %}">NEWS</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link text-light" href="{% url 'post_form'  %}">UPLOAD POST</a></li>
+                {% endif %}
             </ul>            
             <div class="d-flex align-items-center"> <!-- Added margin-left -->
             <!-- Search Form -->
                 <form method="POST" action="{% url 'search' %}" class="d-flex me-3">
                     {% csrf_token %}
                     <div class="input-group custom-search-bar" style="max-width: 300px;">
-                        <input type="text" class="form-control" placeholder="Search any" name="searched">
+                        <input type="text" class="form-control" placeholder="Search" name="searched">
                         <button type="submit" class="btn btn-primary">SEARCH</button>
                     </div>
                 </form>

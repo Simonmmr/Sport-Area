@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Product, Category
 from django.contrib import messages
-from .forms import ContactForm
+from .forms import ContactForm,PostForm
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
-from itertools import zip_longest
+from django.utils.timezone import now
+
 
 
 def search(request):
@@ -79,3 +80,16 @@ def contact_view(request):
         form = ContactForm()
     
     return render(request, 'contact.html', {'form': form})
+
+
+def post_form(request):
+    categories = Category.objects.all()
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = PostForm()
+    return render(request,'post_form.html',{'form':form, 'categories': categories})
+
