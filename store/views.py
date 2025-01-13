@@ -7,6 +7,8 @@ from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.utils.timezone import now
+from django.shortcuts import get_object_or_404, redirect, render
+from django.http import Http404
 
 
 
@@ -29,9 +31,9 @@ def category(request,space):
     space = space.replace ('-', ' ')
 
     try:
-        category= Category.objects.get(name=space)
-        products = Product.objects.filter(category=category)
-        paginator = Paginator(products, 8)  # Show 8 products per page
+        category = get_object_or_404(Category, name=space)
+        products = Product.objects.filter(category=category).order_by('id')
+        paginator = Paginator(products, 6)  # Show 8 products per page
 
         page_number = request.GET.get('page')  # Get current page number from the URL
         page_obj = paginator.get_page(page_number)  # Get the corresponding page
@@ -42,7 +44,7 @@ def category(request,space):
 
 def home(request):
     products = Product.objects.all().order_by('-created_at')
-    paginator = Paginator(products, 6)  # Show 6 products per page
+    paginator = Paginator(products, 9)  # Show 9 products per page
 
     page_number = request.GET.get('page')  # Get current page number from the URL
     page_obj = paginator.get_page(page_number)  # Get the corresponding page
@@ -92,4 +94,8 @@ def post_form(request):
     else:
         form = PostForm()
     return render(request,'post_form.html',{'form':form, 'categories': categories})
+
+
+
+
 

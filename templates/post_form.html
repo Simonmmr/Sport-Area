@@ -1,103 +1,90 @@
+
 {% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Layout</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <br>
-        <h1 class="mb-4 text-center">Post Form</h1>
-        <form method="post" enctype="multipart/form-data" action="{% url 'post_form' %}">
-
-            {% csrf_token %}
-
-            <div class="row g-3">
-                <!-- Title -->
-                <div class="col-md-6">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" maxlength="50" required>
-                </div>
-
-                <!-- Subtitle -->
-                <div class="col-md-6">
-                    <label for="subtitle" class="form-label">Subtitle</label>
-                    <input type="text" class="form-control" id="subtitle" name="subtitle" maxlength="100" placeholder='Optional'>
-                </div>
-
-                <!-- Category -->
-                <div class="col-md-6">
-                    <label for="category" class="form-label">Category</label>
-                    <select class="form-select" id="category" name="category" required>
-                        {% for category in categories %}
-                            <option value="{{ category.id }}">{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <!-- Main Image -->
-                <div class="col-md-6">
-                    <label for="image" class="form-label">Main Image</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
-                </div>
-
-                <!-- Main Description -->
-                <div class="col-md-12">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="4" maxlength="4000" placeholder='Optional'></textarea>
-                </div>
-
-                <!-- Image One -->
-                <div class="col-md-6">
-                    <label for="image_one" class="form-label">Image One</label>
-                    <input type="file" class="form-control" id="image_one" name="image_one" accept="image/*" placeholder='Optional'>
-                </div>
-
-                <!-- Description One -->
-                <div class="col-md-6">
-                    <label for="description_one" class="form-label">Description One</label>
-                    <textarea class="form-control" id="description_one" name="description_one" rows="2" maxlength="4000" placeholder='Optional'></textarea>
-                </div>
-
-                <!-- Image Two -->
-                <div class="col-md-6">
-                    <label for="image_two" class="form-label">Image Two</label>
-                    <input type="file" class="form-control" id="image_two" name="image_two" accept="image/*" placeholder='Optional'>
-                </div>
-
-                <!-- Description Two -->
-                <div class="col-md-6">
-                    <label for="description_two" class="form-label">Description Two</label>
-                    <textarea class="form-control" id="description_two" name="description_two" rows="2" maxlength="4000" placeholder='Optional'></textarea>
-                </div>
-
-                <!-- Video URL -->
-                <div class="col-md-6">
-                    <label for="video_url" class="form-label">Video URL</label>
-                    <input type="url" class="form-control" id="video_url" name="video_url" maxlength="500" placeholder='Optional'>
-                </div>
-
-                <!-- Video Description -->
-                <div class="col-md-6">
-                    <label for="video_description" class="form-label">Video Description</label>
-                    <textarea class="form-control" id="video_description" name="video_description" rows="2" maxlength="4000" placeholder='Optional'></textarea>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Post Form</h1>
+    <form method="post" enctype="multipart/form-data" action="{% url 'post_form' %}">
+        {% csrf_token %}
+        <div class="row g-3">
+            <!-- Title -->
+            <div class="col-md-6">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" maxlength="50" required>
             </div>
-        </form>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+            <!-- Subtitle -->
+            <div class="col-md-6">
+                <label for="subtitle" class="form-label">Subtitle</label>
+                <input type="text" class="form-control" id="subtitle" name="subtitle" maxlength="100" placeholder="Optional">
+            </div>
+
+            <!-- Category -->
+            <div class="col-md-6">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="category" required>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Main Image -->
+            <div class="col-md-6">
+                <label for="image" class="form-label">Main Image</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+            </div>
+
+            <!-- Main Description -->
+            <div class="col-md-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4" maxlength="4000" placeholder="Optional"></textarea>
+            </div>
+
+            <!-- Image One -->
+            <div class="col-md-6">
+                <label for="image_one" class="form-label">Image One</label>
+                <input type="file" class="form-control" id="image_one" name="image_one" accept="image/*" placeholder="Optional">
+            </div>
+
+            <!-- Description One -->
+            <div class="col-md-6">
+                <label for="description_one" class="form-label">Description One</label>
+                <textarea class="form-control" id="description_one" name="description_one" rows="2" maxlength="4000" placeholder="Optional"></textarea>
+            </div>
+
+            <!-- Image Two -->
+            <div class="col-md-6">
+                <label for="image_two" class="form-label">Image Two</label>
+                <input type="file" class="form-control" id="image_two" name="image_two" accept="image/*" placeholder="Optional">
+            </div>
+
+            <!-- Description Two -->
+            <div class="col-md-6">
+                <label for="description_two" class="form-label">Description Two</label>
+                <textarea class="form-control" id="description_two" name="description_two" rows="2" maxlength="4000" placeholder="Optional"></textarea>
+            </div>
+
+            <!-- Video URL -->
+            <div class="col-md-6">
+                <label for="video_url" class="form-label">Video URL</label>
+                <input type="url" class="form-control" id="video_url" name="video_url" maxlength="500" placeholder="Optional">
+            </div>
+
+            <!-- Video Description -->
+            <div class="col-md-6">
+                <label for="video_description" class="form-label">Video Description</label>
+                <textarea class="form-control" id="video_description" name="video_description" rows="2" maxlength="4000" placeholder="Optional"></textarea>
+            </div>
+            <!-- Submit Button -->
+            <div class="text-center">  <!-- Align button to the right -->
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+                <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">
+                    Back to Home
+                </a>
+            </div>
+    </form>
+</div>
 <br>
 {% endblock %}

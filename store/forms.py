@@ -36,3 +36,4 @@ class PostForm(forms.ModelForm):
 		fields = [
 			'title','subtitle','category','image','description','image_one','description_one',
 			'image_two' ,'description_two','video_url','video_description',]
+		

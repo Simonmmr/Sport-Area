@@ -2,20 +2,29 @@
 <style>
     /* General hover effect for nav links */
     .navbar-nav .nav-link {
-        color: rgb(224, 226, 245); /* Default text color */
         transition: color 0.3s ease; /* Smooth transition for text color */
         font-size: 18px; /* Set font size with a unit */
         font-family: 'Arial', sans-serif; /* Set font family */
+       
     }
-    
     .navbar-nav .nav-link:hover {
-        color: rgb(71, 183, 151) !important; /* Use !important as a last resort */
-        background-color: transparent; /* Ensure background remains transparent */
-        border-radius: 5px; /* Optional: Add rounded corners */
+        color: rgb(71, 183, 151) !important; /* Hover color */
+    }
+
+    /* Dropdown menu link styles */
+    .dropdown-menu {
+        background-color: rgba(0, 123, 255, 1); /* Set background color for dropdown */
+    }
+
+    .dropdown-menu .nav-link {
+        background-color: rgb(55, 58, 61); /* Set background color for dropdown */
+        color: white; /* Default text color for dropdown links */
+    }
+
+    .dropdown-menu .nav-link:hover {
+        color: rgb(71, 183, 151); /* Hover color for dropdown links */
     }
 </style>
-
-
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgba(26, 52, 120, 225); color: white;">
     <div class="container py-1 px-4 px-lg-5" >
@@ -27,8 +36,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 fw-bolder gradient-text" style="font-size: 18px; font-family: 'Arial', sans-serif;">
                 <li class="nav-item"><a class="nav-link active text-light" aria-current="page" href="{% url 'home' %}">HOME</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'category' 'Tips' %}">TIPS</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'category' 'News' %}">NEWS</a></li>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link text-light" href="{% url 'post_form'  %}">UPLOAD POST</a></li>
                 {% endif %}
@@ -47,6 +54,20 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary">CONTACT</button>
                 </form>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    NEWS CATEGORY
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"> All</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Latest-News' %}"> LATEST NEWS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Football-News' %}">FOOTBALL NEWS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Predictions' %}">PREDICTIONS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Articles' %}">ARTICLES</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

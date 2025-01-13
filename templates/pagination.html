@@ -42,10 +42,22 @@
                 </li>
             {% endif %}
         </ul>
-        <div class="d-flex justify-content-center mt-3"> <!-- Added a margin-top for spacing -->
-            <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">
+        <div class="d-flex justify-content-center align-items-center mt-3 gap-3">
+            <a href="{% url 'home' %}" class="btn btn-outline-primary">
                 Back to Home
             </a>
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    NEWS CATEGORY
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"> All</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Latest-News' %}"> LATEST NEWS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Football-News' %}">FOOTBALL NEWS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Predictions' %}">PREDICTIONS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Articles' %}">ARTICLES</a></li>
+                </ul>
+            </div>
         </div>
         
     </nav>

@@ -6,50 +6,68 @@
 
 <style>
     .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
     }
 
     @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
     }
+
     .card-img-top {
         height: 350px; /* Set a fixed height */
         object-fit: cover; /* Ensures the image fits the area while maintaining proportions */
         width: 100%; /* Ensure the image spans the full width of the card */
         border-radius: 0.5rem; /* Optional: Add some rounding for aesthetics */
     }
+
+    .container {
+        padding-left: 1px; /* Reduce to almost no padding */
+        padding-right: 1px; /* Reduce to almost no padding */
+    }
+
+    .row {
+        margin-left: 0; /* Remove margin from the row */
+        margin-right: 0; /* Remove margin from the row */
+    }
+
+    .row-cols-1 .col {
+        padding-left: 1px; /* Reduce spacing between columns */
+        padding-right: 1px; /* Reduce spacing between columns */
+    }
 </style>
+
 <!-- Products Section -->
 <section class="py-1">
-    <div class="container px-4 px-lg-5 mt-1">
-        <div class="row gx-3 row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 justify-content-center">
+    <div class="container px-0 mt-1"> <!-- Removed additional padding -->
+        <div class="row gx-1 row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 justify-content-center">
             {% for product in products %}
             <div class="col mb-2">
                 <div class="card h-100 shadow-lg">
                     <!-- Product Image -->
-                    <a href="{% url 'view_detail' product.id %}"><img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
-                    <!-- Product Details -->
-                    <div class="card-body py-2">
-                        <div class="text-center">
-                            <!-- Product Name -->
-                            <h class="fw-bolder gradient-text" style="color:rgb(72, 143, 248); font-size: 0.9rem;">
-                                {{ product.title }}     {{ product.created_at }} <br>
-                                {{ product.subtitle }}
-                            </h>
+                    <a href="{% url 'view_detail' product.id %}">
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
+                        <!-- Product Details -->
+                        <div class="card-body py-2">
+                            <div class="text-center">
+                                <!-- Product Name -->
+                                <h class="fw-bolder gradient-text" style="color:rgb(72, 143, 248); font-size: 0.9rem;">
+                                    {{ product.title }}     {{ product.created_at }} <br>
+                                    {{ product.subtitle }}
+                                </h>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
 {% include "pagination.html" %}
+</section>
 {% endblock %}
-
