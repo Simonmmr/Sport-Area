@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="container mt-5">
+    <br><br>
     <h1 class="mb-4 text-center">Post Form</h1>
     <form method="post" enctype="multipart/form-data" action="{% url 'post_form' %}">
         {% csrf_token %}

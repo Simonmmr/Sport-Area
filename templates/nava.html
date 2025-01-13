@@ -24,9 +24,6 @@
     .dropdown-menu .nav-link:hover {
         color: rgb(51, 169, 135); /* Hover color for dropdown links */
     }
-    .btn-group {
-        margin-left: 0; /* Reduce margin if any */
-    }
 </style>
 
 <!-- Navigation-->
@@ -44,7 +41,7 @@
                 <li class="nav-item"><a class="nav-link text-light" href="{% url 'post_form'  %}">UPLOAD POST</a></li>
                 {% endif %}
             <div class="d-flex justify-content-start">
-                <div class="btn-group">
+                <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         NEWS CATEGORY
                     </button>
