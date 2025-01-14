@@ -55,6 +55,23 @@ def view_detail(request,pk):
     product= Product.objects.get(id=pk)
     return render(request, 'view_detail.html', {"product": product})
 
+def edit_post(request, pk):
+    categories = Category.objects.all()
+    product = get_object_or_404(Product, id=pk)
+    form = PostForm(request.POST or None, instance=product)
+    
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect('view_detail', pk=product.id)  # Redirect to a detail view or another page.
+    
+    return render(request, 'edit_post.html', {"product": product, 'form': form, 'categories': categories})
+
+def delete_post(request, pk):
+    product = Product.objects.get(id=pk)
+    product.delete()
+    return redirect('home')
+    
 
 def contact_view(request):
     if request.method == 'POST':

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <br><br>
+    <h1 class="mb-4 text-center">Edit Form</h1>
+    <form method="POST" enctype="multipart/form-data" action="{% url 'edit_post' product.id %}">
+        {% csrf_token %}
+        <div class="row g-3">
+            <!-- Title -->
+            <div class="col-md-6">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ form.title.value|default:'' }}" maxlength="50" required>
+            </div>
+
+            <!-- Subtitle -->
+            <div class="col-md-6">
+                <label for="subtitle" class="form-label">Subtitle</label>
+                <input type="text" class="form-control" id="subtitle" name="subtitle" 
+                       value="{% if form.subtitle.value %}{{ form.subtitle.value }}{% endif %}" maxlength="100" placeholder="Optional">
+            </div>
+
+            <!-- Category -->
+            <div class="col-md-6">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="category" required>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}" {% if form.category.value == category.id %}selected{% endif %}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Main Image -->
+            <div class="col-md-6">
+                <label for="image" class="form-label">Main Image</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+            </div>
+
+            <!-- Main Description -->
+            <div class="col-md-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4" maxlength="4000" placeholder="Optional">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+            </div>
+
+            <!-- Image One -->
+            <div class="col-md-6">
+                <label for="image_one" class="form-label">Image One</label>
+                <input type="file" class="form-control" id="image_one" name="image_one" accept="image/*">
+            </div>
+
+            <!-- Description One -->
+            <div class="col-md-6">
+                <label for="description_one" class="form-label">Description One</label>
+                <textarea class="form-control" id="description_one" name="description_one" rows="2" maxlength="4000" placeholder="Optional">{% if form.description_one.value %}{{ form.description_one.value }}{% endif %}</textarea>
+            </div>
+
+            <!-- Image Two -->
+            <div class="col-md-6">
+                <label for="image_two" class="form-label">Image Two</label>
+                <input type="file" class="form-control" id="image_two" name="image_two" accept="image/*">
+            </div>
+
+            <!-- Description Two -->
+            <div class="col-md-6">
+                <label for="description_two" class="form-label">Description Two</label>
+                <textarea class="form-control" id="description_two" name="description_two" rows="2" maxlength="4000" placeholder="Optional">{% if form.description_two.value %}{{ form.description_two.value }}{% endif %}</textarea>
+            </div>
+
+            <!-- Video URL -->
+            <div class="col-md-6">
+                <label for="video_url" class="form-label">Video URL</label>
+                <input type="url" class="form-control" id="video_url" name="video_url" value="{% if form.video_url.value %}{{ form.video_url.value }}{% endif %}" maxlength="500" placeholder="Optional">
+            </div>
+
+            <!-- Video Description -->
+            <div class="col-md-6">
+                <label for="video_description" class="form-label">Video Description</label>
+                <textarea class="form-control" id="video_description" name="video_description" rows="2" maxlength="4000" placeholder="Optional">{% if form.video_description.value %}{{ form.video_description.value }}{% endif %}</textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary">Update</button>
+                <a href="{% url 'home' %}" class="btn btn-outline-primary ms-2">Home</a>
+            </div>
+        </div>
+    </form>
+</div>
+<br>
+{% endblock %}
