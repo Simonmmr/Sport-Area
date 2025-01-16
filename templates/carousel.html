@@ -22,10 +22,28 @@
         padding: 0; /* Remove padding */
         margin: 0; /* Remove margin */
     }
+    /* Overlay styles */
+    .carousel-item .text-overlay {
+        position: absolute;
+        top: 70%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%);
+        color:rgb(249, 248, 250); /* Light color (e.g., off-white) for better readability */
+        text-align: justify; /* Align text left and right */
+        margin: 0; /* Remove margin */
+        padding: 10px; /* Add some padding for better spacing */
+        width: 90%; /* Ensure the text does not exceed the image boundaries */
+        line-height: 1.8; /* Adjust line spacing for readability */
+        font-weight: 700; /* Make the text bold for better emphasis */
+        font-size: 1rem; /* Increase text size */
+        text-shadow: 2px 2px 4px rgba(50, 50, 50, 0.8); /* Subtle shadow with gray tint */
+        border-radius: 8px; /* Rounded corners for a polished appearance */
+    }
+    
     </style>
     
-    <section class="py-7">
-        <br>
+    <section class="py-5">
+        <br><br>
         <div id="multiItemCarousel" class="carousel slide" data-bs-ride="carousel">
             <!-- Carousel Content -->
             <div class="carousel-inner">
@@ -35,14 +53,13 @@
                         <div class="item col-4 position-relative">
                             <a href="{% url 'view_detail' product.id %}">
                                 <img src="{{ product.image.url }}" class="d-block w-100 img-fluid" alt="...">
-                                <div class="text-center fw-bolder" style="color:rgb(72, 143, 248); font-size: 1rem;">{{ product.subtitle }}</div>
-                            </a>     
+                                <div class="text-overlay fw-bolder">{{ product.subtitle }}</div>
+                            </a>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-            
             <!-- Carousel Controls -->
             <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -54,6 +71,7 @@
             </button>
         </div>
     </section>
+    
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {

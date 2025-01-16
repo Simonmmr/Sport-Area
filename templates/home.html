@@ -41,7 +41,6 @@
         padding-right: 1px; /* Reduce spacing between columns */
     }
 </style>
-
 <!-- Products Section -->
 <section class="py-1">
     <div class="container px-0 mt-1"> <!-- Removed additional padding -->
@@ -56,8 +55,9 @@
                         <div class="card-body py-2">
                             <div class="text-center">
                                 <!-- Product Name -->
-                                <h class="fw-bolder gradient-text" style="color:rgb(72, 143, 248); font-size: 0.9rem;">
-                                    {{ product.title }}     {{ product.created_at }} <br>
+                                <h class="fw-bolder gradient-text ">
+                                    {{ product.title }}     
+                                    {{ product.created_at }} <br>
                                     {{ product.subtitle }}
                                 </h>
                             </div>

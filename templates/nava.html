@@ -12,26 +12,55 @@
 
     /* Dropdown menu link styles */
     .dropdown-menu {
-        background-color: rgba(0, 123, 255, 1); /* Set background color for dropdown */
+        background-color: rgb(98, 138, 179);; /* Set background color for dropdown */
         margin-left: -25px; /* Adjust this value to move the dropdown to the left */
     }
 
     .dropdown-menu .nav-link {
-        background-color: rgb(76, 90, 103); /* Set background color for dropdown */
+        background-color: rgb(98, 138, 179); /* Set background color for dropdown */
         color: white; /* Default text color for dropdown links */
     }
 
     .dropdown-menu .nav-link:hover {
-        color: rgb(51, 169, 135); /* Hover color for dropdown links */
+        color: rgb(3, 82, 59); /* Hover color for dropdown links */
+    }
+
+    /* Custom styles for the toggler icon */
+    .navbar-toggler {
+        border: none; /* Remove border */
+    }
+
+    .navbar-toggler .navbar-toggler-icon {
+        background-color: transparent; /* Remove default background */
+    }
+
+    .navbar-toggler.custom-toggler .navbar-toggler-icon {
+        display: flex; /* Use flexbox to align items */
+        flex-direction: column; /* Stack items vertically */
+        justify-content: space-around; /* Space items evenly */
+        width: 30px; /* Width of the toggler */
+        height: 30px; /* Height of the toggler */
+    }
+
+    .navbar-toggler.custom-toggler .navbar-toggler-icon div {
+        width: 100%; /* Full width for each stripe */
+        height: 4px; /* Height of each stripe */
+        background-color:rgb(224, 223, 215); /* Change to desired color for the stripes */
+
+        box-sizing: border-box; /* Ensure padding and border are included in the width/height */
     }
 </style>
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgba(26, 52, 120, 225); color: white;">
-    <div class="container py-1 px-4 px-lg-5" >
+    <div class="container py-1 px-4 px-lg-5">
         <img src="{% static 'img/logo.png' %}" alt="logo" style="width: 80px; height: auto; margin-bottom: 38px;">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </span>
         </button>
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,16 +71,16 @@
                 {% endif %}
             <div class="d-flex justify-content-start">
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
                         CATEGORY
                     </button>
                     <ul class="dropdown-menu dropdown-menu-start">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"> All</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Latest-News' %}"> LATEST NEWS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Football-News' %}">FOOTBALL NEWS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Predictions' %}">PREDICTIONS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Articles' %}">ARTICLES</a></li>
-                    </ul>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color: white;">All</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Latest-News' %}" style="color: white;">LATEST NEWS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Football-News' %}" style="color: white;">FOOTBALL NEWS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Predictions' %}" style="color: white;">PREDICTIONS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' 'Articles' %}" style="color: white;">ARTICLES</a></li>
+                    </ul>                    
                 </div>
                  </ul> 
             </div>
@@ -63,13 +92,13 @@
                     {% csrf_token %}
                     <div class="input-group custom-search-bar" style="max-width: 300px;">
                         <input type="text" class="form-control" placeholder="Search" name="searched">
-                        <button type="submit" class="btn btn-primary">SEARCH</button>
+                        <button type="submit" class="btn btn-outline-primary" style="color: white;">SEARCH</button>
                     </div>
                 </form>
                 
                 <form action="{% url 'contact' %}" method="post" class="d-inline-block mb-0 me-2">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-primary">CONTACT</button>
+                    <button type="submit" class="btn btn-outline-primary" style="color: white;">CONTACT</button>
                 </form>
             </div>
         </div>
