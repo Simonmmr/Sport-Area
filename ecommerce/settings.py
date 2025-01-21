@@ -12,9 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
 import dj_database_url
-from decouple import config
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -28,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qtd1d_4@ei%=^wo&cym&&pt75^a^dn3r=a7fikauz6b+4f(*u3'
+SECRET_KEY = os.environ.get('ALLOWED_HOSTS')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG","False").lower()=='true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 
 
 # Application definition
@@ -92,6 +90,8 @@ DATABASES = {
     }
 }
 
+database_url = os.environ.get('DATABASE_URL')
+DATABASES['default']=dj_database_url.parse(database_url)
 
 
 # Password validation
@@ -149,4 +149,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # Replace with your email address
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")      # Replace with your email password
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
